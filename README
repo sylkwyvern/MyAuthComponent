@@ -9,7 +9,9 @@ Only two things are needed along with this component as follows:
   (1) Special table named 'auto_logins'.
   (2) Check box named 'rememberme' on your login form.
 
+
 The 'auto_logins' table is something like this:
+
   create table auto_logins (
     id                int(11) not null auto_increment primary key,
     user_id           int(11),
@@ -23,3 +25,65 @@ The 'auto_logins' table is something like this:
 
 This component doesn't save any user information in cookies.
 It saves the information in the 'auto_logins' table.
+Because I think it is safer.
+
+
+Requirement:
+
+CakePHP 1.3.x
+(I only tested this component with CakePHP 1.3.9)
+
+
+Usage:
+
+If you have already put the standard AuthComponent in your project,
+using this component is a fair bit easy.
+
+(1) Place this component in app/controllers/component directory of your
+    CakePHP project.
+(2) Create the 'auto_logins' table described above.
+(3) Add a check box named 'rememberme' on your login form.
+(4) Change the components' declaration variable in your controller(s)
+    as follows.
+	var $components = array('Auth'=>'MyAuth', ... other components ...);
+
+
+---------------------------------------------------------------
+
+CakePHPで、自動ログインと言われるような機能が欲しくて色々調べてみた
+ところ、なかなか決定打と思えるものが見つからなくて、様々な先人の
+方々の情報を参考にしつつ、結局自作してみました。
+
+最初は、単にセッションのCookieの寿命を長くすればいいのでは？
+と思ったのですが、それはダメなやり方だ、との情報を得てしまったため、
+うーん、どうしてだろう、CakePHPのセッションIDってその都度変更
+されるようなので、いいのでは？とか思ったりしながらもさらに色々
+調べてみました。
+
+中にはCookieにログインIDとパスワードを埋め込むやり方も見かけましたが
+それはさすがにまずいだろうと思いました。
+
+で、結局、自動ログイン専用Cookieにランダム値をセットして、それを
+キーに、専用テーブルに情報を保持するようにしたわけですが。
+
+Cookieに保持するのは、ランダム値のみで、しかも毎回変更するように
+してあります。
+
+ただ、これって結局、CakePHPのセッションを長くするのとそれほど変わらない
+のかもしれないなあ、などと思いつつあります。
+どうなんでしょうか。
+
+このコンポーネントの狙いとして、自動ログイン機能を組み込む際に、
+あちこちにコードを散りばめないで済むようにする、と言う点を
+挙げておきたいと思います。
+
+このコンポーネント自身と、データ保持用のテーブル作成のみで使える、
+つまり、テーブルさえ作成しておけば、標準のAuthComponentと置換できる
+というのが、重視した点です。
+
+うまくいったかどうかわかりませんが。
+
+PHP、及びCakePHPについて未熟な私が、ざっくりと作成したものなので
+問題点などあるかもしれません。
+何かありましたらご連絡いただければ幸いです。
+
