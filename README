@@ -1,4 +1,4 @@
-*** Extended authentication component ***
+*** Extended Authentication Component for CakePHP ***
 
 This component is derived from the standard AuthComponent
 and adds so-called "remember me feature" to the base class.
