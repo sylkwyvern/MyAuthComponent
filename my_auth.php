@@ -1,8 +1,8 @@
 <?php
 /**
- * Extended authentication component
+ * Extended Authentication Component
  * 
- * This component is derived from the standard AuthComponent
+ * This component is derived from the CakePHP's standard AuthComponent
  * and adds so-called "remember me feature" to the base class.
  * 
  * You can simply use this component as substitute for the AuthComponent.
@@ -26,7 +26,7 @@
  * This component doesn't save any user information in cookies.
  * It saves the information in the 'auto_logins' table.
  * 
- * @author hoge
+ * @author Gen Yoshida
  *
  */
 
