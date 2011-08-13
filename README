@@ -1,4 +1,4 @@
-*** Extended Authentication Component for CakePHP ***
+﻿*** Extended Authentication Component for CakePHP ***
 
 This component is derived from the standard AuthComponent
 and adds so-called "remember me feature" to the base class.
@@ -50,40 +50,40 @@ using this component is a fair bit easy.
 
 ---------------------------------------------------------------
 
-CakePHP�ŁA�������O�C���ƌ�����悤�ȋ@�\���~�����ĐF�X���ׂĂ݂�
-�Ƃ���A�Ȃ��Ȃ�����łƎv������̂�������Ȃ��āA�l�X�Ȑ�l��
-���X�̏����Q�l�ɂ��A���ǎ��삵�Ă݂܂����B
+CakePHPで、自動ログインと言われるような機能が欲しくて色々調べてみた
+ところ、なかなか決定打と思えるものが見つからなくて、様々な先人の
+方々の情報を参考にしつつ、結局自作してみました。
 
-�ŏ��́A�P�ɃZ�b�V������Cookie�̎����𒷂�����΂����̂ł́H
-�Ǝv�����̂ł����A����̓_���Ȃ������A�Ƃ̏��𓾂Ă��܂������߁A
-���[��A�ǂ����Ă��낤�ACakePHP�̃Z�b�V����ID���Ă��̓s�x�ύX
-�����悤�Ȃ̂ŁA�����̂ł́H�Ƃ��v�����肵�Ȃ��������ɐF�X
-���ׂĂ݂܂����B
+最初は、単にセッションのCookieの寿命を長くすればいいのでは？
+と思ったのですが、それはダメなやり方だ、との情報を得てしまったため、
+うーん、どうしてだろう、CakePHPのセッションIDってその都度変更
+されるようなので、いいのでは？とか思ったりしながらもさらに色々
+調べてみました。
 
-���ɂ�Cookie�Ƀ��O�C��ID�ƃp�X���[�h�𖄂ߍ��ނ������������܂�����
-����͂������ɂ܂������낤�Ǝv���܂����B
+中にはCookieにログインIDとパスワードを埋め込むやり方も見かけましたが
+それはさすがにまずいだろうと思いました。
 
-�ŁA���ǁA�������O�C����pCookie�Ƀ����_���l���Z�b�g���āA�����
-�L�[�ɁA��p�e�[�u���ɏ���ێ�����悤�ɂ����킯�ł����B
+で、結局、自動ログイン専用Cookieにランダム値をセットして、それを
+キーに、専用テーブルに情報を保持するようにしたわけですが。
 
-Cookie�ɕێ�����̂́A�����_���l�݂̂ŁA����������ύX����悤��
-���Ă���܂��B
+Cookieに保持するのは、ランダム値のみで、しかも毎回変更するように
+してあります。
 
-�����A������Č��ǁACakePHP�̃Z�b�V�����𒷂�����̂Ƃ���قǕς��Ȃ�
-�̂�������Ȃ��Ȃ��A�ȂǂƎv������܂��B
-�ǂ��Ȃ�ł��傤���B
+ただ、これって結局、CakePHPのセッションを長くするのとそれほど変わらない
+のかもしれないなあ、などと思いつつあります。
+どうなんでしょうか。
 
-���̃R���|�[�l���g�̑_���Ƃ��āA�������O�C���@�\��g�ݍ��ލۂɁA
-���������ɃR�[�h���U��΂߂Ȃ��ōςނ悤�ɂ���A�ƌ����_��
-�����Ă��������Ǝv���܂��B
+このコンポーネントの狙いとして、自動ログイン機能を組み込む際に、
+あちこちにコードを散りばめないで済むようにする、と言う点を
+挙げておきたいと思います。
 
-���̃R���|�[�l���g���g�ƁA�f�[�^�ێ��p�̃e�[�u���쐬�݂̂Ŏg����A
-�܂�A�e�[�u�������쐬���Ă����΁A�W����AuthComponent�ƒu���ł���
-�Ƃ����̂��A�d�������_�ł��B
+このコンポーネント自身と、データ保持用のテーブル作成のみで使える、
+つまり、テーブルさえ作成しておけば、標準のAuthComponentと置換できる
+というのが、重視した点です。
 
-���܂����������ǂ����킩��܂��񂪁B
+うまくいったかどうかわかりませんが。
 
-PHP�A�y��CakePHP�ɂ��Ė��n�Ȏ����A��������ƍ쐬�������̂Ȃ̂�
-���_�Ȃǂ��邩������܂���B
-��������܂����炲�A������������΍K���ł��B
+PHP、及びCakePHPについて未熟な私が、ざっくりと作成したものなので
+問題点などあるかもしれません。
+何かありましたらご連絡いただければ幸いです。
 
