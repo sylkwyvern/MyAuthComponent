@@ -68,7 +68,7 @@ class MyAuthComponent extends AuthComponent {
 
 		$model =& $this->getModel();
 		if (isset($this->Controller->data[$model->alias][$this->checkBoxName])) {
-			// The user want to keep the login state.
+			// The user wants to keep the login state.
 			self::_keepLoginState();
 		} else {
 			// The user doesn't want to keep the login state.
@@ -105,7 +105,7 @@ class MyAuthComponent extends AuthComponent {
 		} else {
 			// The session is alive. In this case, the expiration date in the
 			// auto_logins table is ignored.
-			// New expiration date is set to 2 weeks later.
+			// New expiration date will be set to 2 weeks later.
 			$token = $this->Cookie->read($this->cookieName);
 			// Generate a new token and extend the expiration data.
 			self::_keepLoginState($token);
@@ -116,7 +116,7 @@ class MyAuthComponent extends AuthComponent {
 
 
 	//
-	// Generate a new token or update old token and keep it into the table.
+	// Generate a new token or update the old token and save it into the table.
 	//
 	function _keepLoginState($token = null) {
 		$user = $this->Session->read($this->sessionKey);
