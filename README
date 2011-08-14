@@ -36,16 +36,13 @@ CakePHP 1.3.x
 
 Usage:
 
-If you have already put the standard AuthComponent in your project,
-using this component is a fair bit easy.
-
 (1) Place this component in app/controllers/component directory of your
     CakePHP project.
 (2) Create the 'auto_logins' table described above.
 (3) Add a check box named 'rememberme' on your login form.
-(4) Change the components' declaration variable in your controller(s)
+(4) Add the components' declaration variable in your controller(s)
     as follows.
-	var $components = array('Auth'=>'MyAuth', ... other components ...);
+	var $components = array('MyAuth', ... other components ...);
 
 
 ---------------------------------------------------------------
